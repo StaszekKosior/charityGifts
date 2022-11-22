@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
+
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
 </head>
 <body>
@@ -28,3 +29,12 @@
             <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
+    <div class="slogan container container--90">
+        <div class="slogan--item">
+            <h1>
+                Zacznij pomagać!<br/>
+                Oddaj niechciane rzeczy w zaufane ręce
+            </h1>
+        </div>
+    </div>
+</header>
