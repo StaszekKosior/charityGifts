@@ -21,7 +21,6 @@
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
         </div>
-
     </div>
 </section>
 
@@ -95,12 +94,9 @@
                     <div class="title">Fundacja “Bez domu”</div>
                     <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
                 </div>
-
             </li>
-
         </ul>
     </div>
-
 </section>
 
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/fragments/footer.jsp"/>
