@@ -3,6 +3,7 @@ package pl.coderslab.charity.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -32,14 +33,20 @@ public class Donation {
     @OneToOne
     @NotNull
     private Institution institution;
+
     @NotNull
     private String street;
+
     @NotNull
     private String city;
+
     @NotNull
     private String zipCode;
+
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
+
     @NotNull
     private LocalTime pickUpTime;
 
