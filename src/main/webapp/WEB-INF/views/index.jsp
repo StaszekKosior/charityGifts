@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="<c:url value="/form"/>" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section class="about-us">
@@ -109,7 +109,7 @@
             <c:if test="${not empty institutionsListSize}">
             <c:choose>
                 <c:when test="${institutionsListSize % 2 != 0}">
-                    <div >
+                    <div class="col" style="visibility: hidden">
                     </div>
                     </li>
                 </c:when>
