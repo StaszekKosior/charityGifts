@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -25,28 +23,29 @@ public class Donation {
     private Long id;
 
     @Min(1)
+    @NotNull(message = "{donation.quantity.format.error}")
     private Integer quantity;
 
     @ManyToMany
-    @NotNull
+    @NotEmpty(message = "{donation.categories.format.error}")
     private List<Category> categories = new ArrayList<>();
 
     @OneToOne
-    @NotNull
+    @NotNull(message = "{donation.institution.format.error}")
     private Institution institution;
 
-    @NotNull
+    @NotBlank
     private String street;
 
-    @NotNull
+    @NotBlank
     private String city;
 
     @NotNull
-    @Size(min = 9, max = 9)
+    @Size(min = 9, max = 9, message = "{phone.number.format.error}")
     private String phoneNumber;
 
     @NotNull
-    @Size(min = 6, max = 6)
+    @Size(min = 6, max = 6, message = "{donation.zipCode.format.error}")
     private String zipCode;
 
     @NotNull
@@ -57,6 +56,4 @@ public class Donation {
     private LocalTime pickUpTime;
 
     private String pickUpComment;
-
-
 }

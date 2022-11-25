@@ -33,7 +33,7 @@
         </div>
     </div>
 </div>
-
+</header>
 
 <section class="form--steps">
     <div class="form--steps-instructions">
@@ -59,44 +59,27 @@
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
         <form:form method="post" modelAttribute="donation">
+            <form:hidden path="id"/>
 
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
 
-                    <%--                <c:forEach var="category" items="${categories}">--%>
-                    <%--                    <div class="form-group form-group--checkbox">--%>
-                    <%--                        <label>--%>
-                    <%--                            <input--%>
-                    <%--                                    type="checkbox"--%>
-                    <%--                                    name="categories"--%>
-                    <%--                                    value="${category.id}"/>--%>
-                    <%--                            <span class="checkbox"></span>--%>
-                    <%--                            <span class="description">${category.name}</span>--%>
-                    <%--                        </label>--%>
-                    <%--                    </div>--%>
-                    <%--                </c:forEach>--%>
+                <c:forEach var="category" items="${categories}">
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input
+                                    type="checkbox"
+                                    name="categories"
+                                    value="${category.id}"/>
+                            <span class="checkbox"></span>
+                            <span class="description">${category.name}</span>
+                        </label>
 
-                    <%--                <div class="form-group form-group--checkbox">--%>
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input
-                                type="checkbox"
-                                name="categories"
-                                value="clothes-to-use"
-                        />
-                        <span class="checkbox"></span>
-                        <span class="description"
-                        >testowy checkbox</span
-                        >
-                    </label>
-                </div>
-                <div>
-                    <form:label path="categories">
-                    <form:checkboxes cssClass="form-group form-group--checkbox" path="categories" items="${categories}" itemLabel="name" itemValue="id"/>
-                    </form:label>
-                </div>
+                    </div>
+                </c:forEach>
+                <form:errors path="categories" cssStyle="color : red"/>
 
 
                 <div class="form-group form-group--buttons">
@@ -111,7 +94,8 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input type="number" min="1" path="quantity"/>
+                        <form:input type="number" path="quantity"/>
+                        <form:errors path="quantity" cssStyle="color : red"/>
                     </label>
                 </div>
 
@@ -121,35 +105,25 @@
                 </div>
             </div>
 
-
             <!-- STEP 3 -->
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                    <%--                <div class="form-group form-group--checkbox">--%>
-                    <%--                    <label>--%>
-                    <%--                        <input type="radio" name="organization" value="old"/>--%>
-                    <%--                        <span class="checkbox radio"></span>--%>
-                    <%--                        <span class="description">--%>
-                    <%--                  <div class="title">Fundacja “Bez domu”</div>--%>
-                    <%--                  <div class="subtitle">--%>
-                    <%--                    Cel i misja: Pomoc dla osób nie posiadających miejsca--%>
-                    <%--                    zamieszkania--%>
-                    <%--                  </div>--%>
-                    <%--                </span>--%>
-                    <%--                    </label>--%>
-                    <%--                </div>--%>
-
                 <c:forEach var="institution" items="${institutions}">
-                    <%-- <div class="form-group form-group--checkbox">--%>
-                    <div>
-                        <span class="description">
-                            <div class="title">${institution.name}</div>
-                            <div class="subtitle">${institution.description}</div>
-                        </span>
-                        <form:radiobutton cssClass="form-group checkbox radio" path="institution" value="${institution.id}"/>
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input type="radio" name="institution" value="${institution.id}"/>
+                            <span class="checkbox radio"></span>
+                            <span class="description">
+                                      <div class="title">${institution.name}</div>
+                                      <div class="subtitle">
+                                              ${institution.description}
+                                      </div>
+                                    </span>
+                        </label>
                     </div>
                 </c:forEach>
+                <form:errors path="institution" cssStyle="color : red"/>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
@@ -167,25 +141,29 @@
                         <div class="form-group form-group--inline">
                             <form:label path="street"> Ulica
                                 <form:input path="street" type="text"/>
+                                <form:errors path="street" cssStyle="color : red"/>
                             </form:label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <form:label path="city"> Miasto
                                 <form:input path="city" type="text"/>
+                                <form:errors path="city" cssStyle="color : red"/>
                             </form:label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                                <form:label path="zipCode"> Kod pocztowy
-                                    <form:input path="zipCode" type="text"
-                                   pattern="^\d{2}-\d{3}$" maxlength="6"/>
-                                </form:label>
+                            <form:label path="zipCode"> Kod pocztowy
+                                <form:input path="zipCode" type="text"
+                                            pattern="^\d{2}-\d{3}$" maxlength="6"/>
+                                <form:errors path="zipCode" cssStyle="color : red"/>
+                            </form:label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <form:label path="phoneNumber"> Numer telefonu
                                 <form:input path="phoneNumber" type="tel" pattern="[0-9]{9}" maxlength="9"/>
+                                <form:errors path="phoneNumber" cssStyle="color : red"/>
                             </form:label>
                         </div>
                     </div>
@@ -195,12 +173,14 @@
                         <div class="form-group form-group--inline">
                             <form:label path="pickUpDate"> Data
                                 <form:input path="pickUpDate" type="date"/>
+                                <form:errors path="pickUpDate" cssStyle="color : red"/>
                             </form:label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <form:label path="pickUpTime"> Godzina
                                 <form:input path="pickUpTime" type="time"/>
+                                <form:errors path="pickUpTime" cssStyle="color : red"/>
                             </form:label>
                         </div>
 
@@ -213,7 +193,6 @@
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-<%--                    <button type="submit" class="btn next-step">Dalej</button>--%>
                     <form:button class="btn">Dalej</form:button>
                 </div>
             </div>
