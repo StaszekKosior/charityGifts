@@ -32,86 +32,70 @@
         </div>
     </div>
 </div>
-
+</header>
 
 <section class="form--steps">
-    <div class="form--steps-instructions">
-        <div class="form--steps-container">
-            <h3>Ważne!</h3>
-            <p data-step="1" class="active">
-                Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu będziemy
-                wiedzieć komu najlepiej je przekazać.
-            </p>
-            <p data-step="2">
-                Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu będziemy
-                wiedzieć komu najlepiej je przekazać.
-            </p>
-            <p data-step="3">
-                Wybierz jedną, do
-                której trafi Twoja przesyłka.
-            </p>
-            <p data-step="4">Podaj adres oraz termin odbioru rzeczy.</p>
-        </div>
-    </div>
+    <div class="form--steps-container">
 
-    <!-- STEP 5 -->
-    <div data-step="5">
-        <h3>Podsumowanie Twojej darowizny</h3>
-        <c:if test="${not empty donation}">
-            <div class="summary">
-                <div class="form-section">
-                    <h4>Oddajesz:</h4>
-                    <ul>
-                        <li>
-                            <span class="icon icon-bag"></span>
-                            <span class="summary--text">
-                                    Worki: ${donation.quantity} ,
+
+        <form>
+            <!-- STEP 5 -->
+            <div data-step="5" class="active">
+                <h3>Podsumowanie Twojej darowizny</h3>
+                <div class="summary">
+                    <div class="form-section">
+                        <h4>Oddajesz:</h4>
+                        <ul>
+                            <li>
+                                <c:if test="${not empty donation}">
+                                <span class="icon icon-bag"></span>
+                                <span class="summary--text">
+                                    Ilość worków: ${donation.quantity}, kategorie:
                                     <c:forEach var="category" items="${donation.categories}">
                                         ${category.name},
                                     </c:forEach>
                                 </span>
-
-                        </li>
-
-                        <li>
-                            <span class="icon icon-hand"></span>
-                            <span class="summary--text"
-                            >Dla ${donation.institution.name}</span
-                            >
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="form-section form-section--columns">
-                    <div class="form-section--column">
-                        <h4>Adres odbioru:</h4>
-                        <ul>
-                            <li>${donation.street}</li>
-                            <li>${donation.city}</li>
-                            <li>${donation.zipCode}</li>
-                            <li>${donation.phoneNumber}</li>
+                            </li>
+                            <li>
+                                <span class="icon icon-hand"></span>
+                                <span class="summary--text">
+                                    Dla: ${donation.institution.name}
+                                </span>
+                            </li>
                         </ul>
                     </div>
 
-                    <div class="form-section--column">
-                        <h4>Termin odbioru:</h4>
-                        <ul>
-                            <li>${donation.pickUpDate}</li>
-                            <li>${donation.pickUpTime}</li>
-                            <li>${donation.pickUpComment}</li>
-                        </ul>
+                    <div class="form-section form-section--columns">
+                        <div class="form-section--column">
+                            <h4>Adres odbioru:</h4>
+                            <ul>
+                                <li>${donation.street}</li>
+                                <li>${donation.city}</li>
+                                <li>${donation.zipCode}</li>
+                                <li>tel.: ${donation.phoneNumber}</li>
+                            </ul>
+                        </div>
+
+                        <div class="form-section--column">
+                            <h4>Termin odbioru:</h4>
+                            <ul>
+                                <li>${donation.pickUpDate}</li>
+                                <li>${donation.pickUpTime}</li>
+                                <li>${donation.pickUpComment}</li>
+                                </c:if>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group form-group--buttons">
-                <button type="button" class="btn prev-step">Wstecz</button>
-                <a href="<c:url value="/form/confirm"/>" class="btn">Potwierdzam</a>
+                <div class="form-group form-group--buttons">
+                    <a href="<c:url value="/form"/>" class="btn">Wstecz</a>
+                    <a href="<c:url value="/form/confirm"/>" class="btn">Potwierdzam</a>
+                </div>
             </div>
-        </c:if>
-    </div>
-
+        </form>
     </div>
 </section>
+
 
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/fragments/footer.jsp"/>

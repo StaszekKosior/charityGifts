@@ -24,16 +24,19 @@ public class DonationController {
     private final DonationRepository donationRepository;
     private final CategoryRepository categoryRepository;
     private final InstitutionRepository institutionRepository;
-    private final HttpSession session;
 
     @GetMapping(value = "")
-    public String donationForm(Model model) {
+    public String donationForm(Model model, HttpSession session) {
+        if (session.getAttribute("donation") != null){
+            model.addAttribute(session.getAttribute("donation"));
+        }
         model.addAttribute("donation", new Donation());
+
         return "form/form";
     }
 
     @PostMapping(value = "")
-    public String addDonation(@Valid @ModelAttribute Donation donation, BindingResult result){
+    public String addDonation(@Valid @ModelAttribute Donation donation, BindingResult result, HttpSession session){
         if (result.hasErrors()) {
             return "form/form";
         }
@@ -42,8 +45,9 @@ public class DonationController {
         return "/form/form-summary";
     }
     @GetMapping(value = "/confirm")
-    public String confirmDonation(){
+    public String confirmDonation(HttpSession session){
         donationRepository.save((Donation) session.getAttribute("donation"));
+        session.removeAttribute("donation");
         return "/form/form-confirmation";
     }
 
@@ -56,5 +60,4 @@ public class DonationController {
     public List<Institution> institutions(){
         return institutionRepository.findAll();
     }
-
 }
