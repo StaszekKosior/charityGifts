@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -41,6 +42,11 @@ public class Donation {
     private String city;
 
     @NotNull
+    @Size(min = 9, max = 9)
+    private String phoneNumber;
+
+    @NotNull
+    @Size(min = 6, max = 6)
     private String zipCode;
 
     @NotNull
@@ -51,11 +57,6 @@ public class Donation {
     private LocalTime pickUpTime;
 
     private String pickUpComment;
-
-
-
-
-
 
 
 }

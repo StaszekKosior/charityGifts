@@ -12,5 +12,4 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     @Query("SELECT COUNT(id) FROM Donation")
     Integer countAll();
 
-
 }
