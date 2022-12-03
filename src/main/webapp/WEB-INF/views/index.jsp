@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    <a href="<c:url value="/form"/>" class="btn btn--large">Załóż konto</a>
+    <a href="<c:url value="/user/register"/>" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section class="about-us">

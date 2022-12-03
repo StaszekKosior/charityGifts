@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/form")
+@RequestMapping("/donation")
 public class DonationController {
 
     private final DonationRepository donationRepository;
