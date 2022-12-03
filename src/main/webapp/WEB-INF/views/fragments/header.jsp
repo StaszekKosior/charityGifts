@@ -19,7 +19,7 @@
         <sec:authorize access="isAuthenticated()">
             <p>Zalogowany jako: <sec:authentication property="principal.username"/></p>
             <form action="<c:url value="/logout"/>" method="post">
-                <input type="submit" value="Wyloguj">
+                <input type="submit" class="btn btn--small btn--without-border" value="Wyloguj">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
         </sec:authorize>

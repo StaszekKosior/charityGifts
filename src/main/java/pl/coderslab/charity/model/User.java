@@ -4,12 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,18 +22,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @NotBlank
+    private String name;
+
+    @NotBlank
+    private String surname;
+
     @Email
     @NotEmpty
     @Column(unique = true)
     String email;
 
     @NotEmpty
-    @Size(min = 8)
+    @Size(min = 8, message = "{password.size.error}")
     String password;
-
-//    @NotEmpty
-//    @Size(min = 8)
-//    String password2;
 
     @OneToMany
     @JoinTable(name = "users_donations",
@@ -48,4 +49,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+
 }
+

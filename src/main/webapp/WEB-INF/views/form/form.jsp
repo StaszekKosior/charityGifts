@@ -81,7 +81,6 @@
                 </c:forEach>
                 <form:errors path="categories" cssStyle="color : red"/>
 
-
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>
