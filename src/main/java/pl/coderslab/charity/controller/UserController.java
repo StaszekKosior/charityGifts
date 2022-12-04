@@ -40,16 +40,16 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public String register(@Valid @ModelAttribute User user, @RequestParam(required = false) String passwordConfirm, BindingResult result) {
-        if (result.hasErrors()) {
-            return "user/register";
-        }
-        if (userService.findByEmail(user.getEmail()).isPresent()) {
+    public String register(@Valid @ModelAttribute User user, BindingResult result, @RequestParam(required = false) String passwordConfirm) {
+
+        if (user.getEmail() != null && userService.findByEmail(user.getEmail()).isPresent()) {
             result.addError(new FieldError("user", "email", "Istnieje użytkownik o wskazanym adresie"));
-            return "user/register";
+
         }
-        if (!passwordConfirm.equals(user.getPassword())) {
+        if (passwordConfirm != null && user.getPassword() != null && !passwordConfirm.equals(user.getPassword())) {
             result.addError(new FieldError("user", "password", "Wprowadzono różne hasła"));
+        }
+        if (result.hasErrors()) {
             return "user/register";
         }
         userService.saveUser(user);

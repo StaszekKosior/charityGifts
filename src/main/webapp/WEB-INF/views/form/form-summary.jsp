@@ -89,8 +89,8 @@
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <a href="<c:url value="/form"/>" class="btn">Wstecz</a>
-                    <a href="<c:url value="/form/confirm"/>" class="btn">Potwierdzam</a>
+                    <a href="<c:url value="/donation"/>" class="btn">Wstecz</a>
+                    <a href="<c:url value="/donation/confirm"/>" class="btn">Potwierdzam</a>
                 </div>
             </div>
         </form>
